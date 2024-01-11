@@ -7,6 +7,8 @@ import {NgxsModule} from "@ngxs/store";
 import {UserState} from "./ngxs/AppState";
 import {FormsModule} from "@angular/forms";
 import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
+import {Service} from "./ngxs/Service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -16,10 +18,11 @@ import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     NgxsModule.forRoot([UserState]),
     NgxsReduxDevtoolsPluginModule.forRoot()
   ],
-  providers: [],
+  providers: [Service],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

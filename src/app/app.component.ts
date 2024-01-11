@@ -13,15 +13,13 @@ export class AppComponent implements OnInit{
   title = 'ngxs-example';
   sampleName: string = '';
   @Select(UserState.selectName) name$!: Observable<string>;
-  @Select((state: { userState: { name: any; }}) => state.userState.name) name2$: any
+  @Select(UserState.selectResponse) response$!: Observable<any>;
+  // @Select((state: { userState: { name: any; }}) => state.userState.name) name2$: any
 
   constructor(private readonly store: Store) {
   }
 
   ngOnInit() {
-   this.store.select(state => state.userState).subscribe(res => {
-     console.log(res);
-   });
   }
 
   @Action(SetUserName)

@@ -3,8 +3,10 @@
   <input type="text" id="textInput" [(ngModel)]="sampleName" />
 
   <button (click)="updateName()">Submit</button>
-
-  <label for="textInput"> Hello {{name2$ | async}}</label>
 </div>
 
 <label for="textInput"> Hello {{name$ | async}}</label>
+<br>
+<br>
+
+<label for="textInput"> Response {{(response$ | async)?.title}}</label>
