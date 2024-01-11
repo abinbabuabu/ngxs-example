@@ -8,6 +8,8 @@ interface UserStateModel{
   response: any;
 }
 
+
+// Initial State
 @State<UserStateModel>({
   name: 'userState',
   defaults: {
@@ -22,15 +24,19 @@ export class UserState {
 
   constructor(private service: Service) {
   }
+
+  // Ngrx Reducer equivalent
   @Action(SetUserName)
   updateUserName(context: StateContext<UserStateModel>,action: SetUserName){
     const current = context.getState();
+    // context.setState({}) // To set the entire state
     context.patchState({
       ...current,
       name: action.name
     });
   }
 
+  // Ngrx Effects equivalent
   @Action(SetUserName)
   getDomainForUserName(context: StateContext<UserStateModel>){
     this.service.getDomain().subscribe((response: any) => {
@@ -43,6 +49,8 @@ export class UserState {
     })
   }
 
+  // Selectors
+  // Q: How to achieve nesting of selectors/ reusing selectors?
   @Selector()
   static selectName(state: UserStateModel) {
     return state.name;
